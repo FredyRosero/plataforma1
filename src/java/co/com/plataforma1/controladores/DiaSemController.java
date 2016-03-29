@@ -1,8 +1,9 @@
-package co.com.plataforma1.modelo;
+package co.com.plataforma1.controladores;
 
+import co.com.plataforma1.modelo.DiaSem;
 import co.com.plataforma1.modelo.util.JsfUtil;
 import co.com.plataforma1.modelo.util.JsfUtil.PersistAction;
-import co.com.plataforma1.operaciones.HoraFacade;
+import co.com.plataforma1.operaciones.DiaSemFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("horaController")
+@Named("diaSemController")
 @SessionScoped
-public class HoraController implements Serializable {
+public class DiaSemController implements Serializable {
 
     @EJB
-    private co.com.plataforma1.operaciones.HoraFacade ejbFacade;
-    private List<Hora> items = null;
-    private Hora selected;
+    private co.com.plataforma1.operaciones.DiaSemFacade ejbFacade;
+    private List<DiaSem> items = null;
+    private DiaSem selected;
 
-    public HoraController() {
+    public DiaSemController() {
     }
 
-    public Hora getSelected() {
+    public DiaSem getSelected() {
         return selected;
     }
 
-    public void setSelected(Hora selected) {
+    public void setSelected(DiaSem selected) {
         this.selected = selected;
     }
 
@@ -44,36 +45,36 @@ public class HoraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private HoraFacade getFacade() {
+    private DiaSemFacade getFacade() {
         return ejbFacade;
     }
 
-    public Hora prepareCreate() {
-        selected = new Hora();
+    public DiaSem prepareCreate() {
+        selected = new DiaSem();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("HoraCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DiaSemCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("HoraUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DiaSemUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("HoraDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DiaSemDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Hora> getItems() {
+    public List<DiaSem> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -108,38 +109,38 @@ public class HoraController implements Serializable {
         }
     }
 
-    public Hora getHora(java.lang.Short id) {
+    public DiaSem getDiaSem(java.lang.Boolean id) {
         return getFacade().find(id);
     }
 
-    public List<Hora> getItemsAvailableSelectMany() {
+    public List<DiaSem> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Hora> getItemsAvailableSelectOne() {
+    public List<DiaSem> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Hora.class)
-    public static class HoraControllerConverter implements Converter {
+    @FacesConverter(forClass = DiaSem.class)
+    public static class DiaSemControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            HoraController controller = (HoraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "horaController");
-            return controller.getHora(getKey(value));
+            DiaSemController controller = (DiaSemController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "diaSemController");
+            return controller.getDiaSem(getKey(value));
         }
 
-        java.lang.Short getKey(String value) {
-            java.lang.Short key;
-            key = Short.valueOf(value);
+        java.lang.Boolean getKey(String value) {
+            java.lang.Boolean key;
+            key = Boolean.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Short value) {
+        String getStringKey(java.lang.Boolean value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -150,11 +151,11 @@ public class HoraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Hora) {
-                Hora o = (Hora) object;
-                return getStringKey(o.getIdHoras());
+            if (object instanceof DiaSem) {
+                DiaSem o = (DiaSem) object;
+                return getStringKey(o.getIdDia());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Hora.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), DiaSem.class.getName()});
                 return null;
             }
         }

@@ -109,7 +109,7 @@ public class DiaSem implements Serializable {
 
     @Override
     public String toString() {
-        return "co.com.plataforma1.modelo.DiaSem[ idDia=" + idDia + " ]";
+        return "idDia "+idDia;
     }
     
 }

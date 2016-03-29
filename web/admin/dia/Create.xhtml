@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiaSemCreateDlg" widgetVar="DiaSemCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDiaSemTitle}">
+            <h:form id="DiaSemCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{diaSemController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDiaSemLabel_idDia}" for="idDia" />
+                        <p:selectBooleanCheckbox id="idDia" value="#{diaSemController.selected.idDia}" required="true" requiredMessage="#{bundle.EditDiaSemRequiredMessage_idDia}"/>
+                        <p:outputLabel value="#{bundle.CreateDiaSemLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{diaSemController.selected.valor}" title="#{bundle.CreateDiaSemTitle_valor}" required="true" requiredMessage="#{bundle.CreateDiaSemRequiredMessage_valor}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{diaSemController.create}" value="#{bundle.Save}" update="display,:DiaSemListForm:datalist,:growl" oncomplete="handleSubmit(args,'DiaSemCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiaSemCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

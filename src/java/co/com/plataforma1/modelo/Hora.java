@@ -58,6 +58,8 @@ public class Hora implements Serializable {
     }
 
     public Hora(Short idHoras, String valorHr) {
+        System.out.print( "Hora:60" );
+        System.out.print( valorHr );
         this.idHoras = idHoras;
         this.valorHr = valorHr;
     }
@@ -109,7 +111,7 @@ public class Hora implements Serializable {
 
     @Override
     public String toString() {
-        return "co.com.plataforma1.modelo.Hora[ idHoras=" + idHoras + " ]";
+        return valorHr + " - " + idHoras;
     }
     
 }
