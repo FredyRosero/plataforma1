@@ -109,7 +109,7 @@ public class DiaSemController implements Serializable {
         }
     }
 
-    public DiaSem getDiaSem(java.lang.Boolean id) {
+    public DiaSem getDiaSem(java.lang.Short id) {
         return getFacade().find(id);
     }
 
@@ -134,13 +134,13 @@ public class DiaSemController implements Serializable {
             return controller.getDiaSem(getKey(value));
         }
 
-        java.lang.Boolean getKey(String value) {
-            java.lang.Boolean key;
-            key = Boolean.valueOf(value);
+        java.lang.Short getKey(String value) {
+            java.lang.Short key;
+            key = Short.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Boolean value) {
+        String getStringKey(java.lang.Short value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();

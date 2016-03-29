@@ -58,7 +58,7 @@ public class Horario implements Serializable {
     @JoinColumn(name = "dia", referencedColumnName = "idDia")
     @ManyToOne(optional = false)
     private DiaSem dia;
-
+       
     public Horario() {
     }
 

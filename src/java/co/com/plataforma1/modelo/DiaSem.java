@@ -41,7 +41,7 @@ public class DiaSem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idDia")
-    private Boolean idDia;
+    private Short idDia;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 9)
@@ -53,20 +53,20 @@ public class DiaSem implements Serializable {
     public DiaSem() {
     }
 
-    public DiaSem(Boolean idDia) {
+    public DiaSem(Short idDia) {
         this.idDia = idDia;
     }
 
-    public DiaSem(Boolean idDia, String valor) {
+    public DiaSem(Short idDia, String valor) {
         this.idDia = idDia;
         this.valor = valor;
     }
 
-    public Boolean getIdDia() {
+    public Short getIdDia() {
         return idDia;
     }
 
-    public void setIdDia(Boolean idDia) {
+    public void setIdDia(Short idDia) {
         this.idDia = idDia;
     }
 
