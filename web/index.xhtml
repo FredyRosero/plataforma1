@@ -5,17 +5,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <title>Facelet Title</title>
+         <ui:define name="title">Index</ui:define>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <f:metadata>
         <f:event type="preRenderView" listener="#{usuarioController.validarSesion()}"/>
     </f:metadata>
-    <ui:composition template="/welcomePrimefaces.xhtml">
+   <ui:composition template="/welcomePrimefaces.xhtml">
         <ui:define name="center" >
-            <br />
+            <br/>
             <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-            <br />
+            <br/>
             <h:link outcome="/admin/acudiente/List" value="Show All Acudiente Items"/>
             <br />
             <h:link outcome="/admin/auditoria/List" value="Show All Auditoria Items"/>

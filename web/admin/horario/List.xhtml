@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
+    
     <ui:composition template="/template.xhtml">
 
 
@@ -16,7 +16,7 @@
         <ui:define name="center">
             <h:form id="HorarioListForm">
                 <p:panel header="#{bundle.ListHorarioTitle}">
-                    <p:dataTable id="datalist" value="#{horarioController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{horarioController.listar()}" var="item"
                                  selectionMode="single" selection="#{horarioController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idhorario}"

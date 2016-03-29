@@ -6,6 +6,7 @@
 package co.com.plataforma1.operaciones;
 
 import co.com.plataforma1.modelo.Horario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ public class HorarioFacade extends AbstractFacade<Horario> {
 
     @PersistenceContext(unitName = "plataforma1PU")
     private EntityManager em;
+    private List<Horario> Lista;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -28,5 +30,8 @@ public class HorarioFacade extends AbstractFacade<Horario> {
     public HorarioFacade() {
         super(Horario.class);
     }
-    
+    public List<Horario> ListaUsuario(){
+    Lista = em.createNamedQuery("Horario.findAll").getResultList();
+    return Lista;
+    }    
 }

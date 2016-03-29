@@ -27,6 +27,7 @@ public class HorarioController implements Serializable {
     private co.com.plataforma1.operaciones.HorarioFacade ejbFacade;
     private List<Horario> items = null;
     private Horario selected;
+    private List<Horario> listaHorario = null;
 
     public HorarioController() {
     }
@@ -35,6 +36,11 @@ public class HorarioController implements Serializable {
         return selected;
     }
 
+      public List<Horario> listar() {
+        listaHorario = ejbFacade.ListaUsuario();
+        return listaHorario;
+    }  
+    
     public void setSelected(Horario selected) {
         this.selected = selected;
     }
