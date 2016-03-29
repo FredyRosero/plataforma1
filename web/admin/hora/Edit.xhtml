@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HoraEditDlg" widgetVar="HoraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditHoraTitle}">
+            <h:form id="HoraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditHoraLabel_idHoras}" for="idHoras" />
+                        <p:inputText id="idHoras" value="#{horaController.selected.idHoras}" title="#{bundle.EditHoraTitle_idHoras}" required="true" requiredMessage="#{bundle.EditHoraRequiredMessage_idHoras}"/>
+                        <p:outputLabel value="#{bundle.EditHoraLabel_valorHr}" for="valorHr" />
+                        <p:inputText id="valorHr" value="#{horaController.selected.valorHr}" title="#{bundle.EditHoraTitle_valorHr}" required="true" requiredMessage="#{bundle.EditHoraRequiredMessage_valorHr}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horaController.update}" value="#{bundle.Save}" update="display,:HoraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HoraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HoraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

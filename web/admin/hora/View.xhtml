@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HoraViewDlg" widgetVar="HoraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHoraTitle}">
+            <h:form id="HoraViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewHoraLabel_idHoras}"/>
+                        <h:outputText value="#{horaController.selected.idHoras}" title="#{bundle.ViewHoraTitle_idHoras}"/>
+                        <h:outputText value="#{bundle.ViewHoraLabel_valorHr}"/>
+                        <h:outputText value="#{horaController.selected.valorHr}" title="#{bundle.ViewHoraTitle_valorHr}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="HoraViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

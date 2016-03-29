@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HoraCreateDlg" widgetVar="HoraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateHoraTitle}">
+            <h:form id="HoraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateHoraLabel_idHoras}" for="idHoras" />
+                        <p:inputText id="idHoras" value="#{horaController.selected.idHoras}" title="#{bundle.CreateHoraTitle_idHoras}" required="true" requiredMessage="#{bundle.CreateHoraRequiredMessage_idHoras}"/>
+                        <p:outputLabel value="#{bundle.CreateHoraLabel_valorHr}" for="valorHr" />
+                        <p:inputText id="valorHr" value="#{horaController.selected.valorHr}" title="#{bundle.CreateHoraTitle_valorHr}" required="true" requiredMessage="#{bundle.CreateHoraRequiredMessage_valorHr}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horaController.create}" value="#{bundle.Save}" update="display,:HoraListForm:datalist,:growl" oncomplete="handleSubmit(args,'HoraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HoraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
