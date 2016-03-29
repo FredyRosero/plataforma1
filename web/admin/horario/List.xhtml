@@ -5,24 +5,18 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
- 
-    <f:metadata>
-        <f:event type="preRenderView" listener="#{usuarioController.validarSesion()}"/>
-    </f:metadata>    
-    <ui:composition template="/welcomePrimefaces.xhtml">
+
+    <ui:composition template="/template.xhtml">
 
 
         <ui:define name="title">
             <h:outputText value="#{bundle.ListHorarioTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="center"> 
-            <h:outputScript library="js" target="head">
-                    console.log("#{horarioController.listar()}");
-            </h:outputScript>    
+        <ui:define name="body">
             <h:form id="HorarioListForm">
                 <p:panel header="#{bundle.ListHorarioTitle}">
-                    <p:dataTable id="datalist" value="#{horarioController.listar()}" var="item"
+                    <p:dataTable id="datalist" value="#{horarioController.items}" var="item"
                                  selectionMode="single" selection="#{horarioController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idhorario}"
@@ -41,20 +35,6 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHorarioTitle_hora}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.hora}">
-                                <f:convertDateTime pattern="HH:mm:ss" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListHorarioTitle_dia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dia}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListHorarioTitle_iddocenteMateria}"/>
                             </f:facet>
                             <h:outputText value="#{item.iddocenteMateria}"/>
@@ -64,6 +44,18 @@
                                 <h:outputText value="#{bundle.ListHorarioTitle_idgrado}"/>
                             </f:facet>
                             <h:outputText value="#{item.idgrado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioTitle_hora}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hora}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHorarioTitle_dia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dia}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{horarioController.prepareCreate}" update=":HorarioCreateForm" oncomplete="PF('HorarioCreateDialog').show()"/>

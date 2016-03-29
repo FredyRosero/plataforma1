@@ -14,16 +14,14 @@
                     <p:panelGrid columns="2" rendered="#{horarioController.selected != null}">
                         <h:outputText value="#{bundle.ViewHorarioLabel_idhorario}"/>
                         <h:outputText value="#{horarioController.selected.idhorario}" title="#{bundle.ViewHorarioTitle_idhorario}"/>
-                        <h:outputText value="#{bundle.ViewHorarioLabel_hora}"/>
-                        <h:outputText value="#{horarioController.selected.hora}" title="#{bundle.ViewHorarioTitle_hora}">
-                            <f:convertDateTime pattern="HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewHorarioLabel_dia}"/>
-                        <h:outputText value="#{horarioController.selected.dia}" title="#{bundle.ViewHorarioTitle_dia}"/>
                         <h:outputText value="#{bundle.ViewHorarioLabel_iddocenteMateria}"/>
                         <h:outputText value="#{horarioController.selected.iddocenteMateria}" title="#{bundle.ViewHorarioTitle_iddocenteMateria}"/>
                         <h:outputText value="#{bundle.ViewHorarioLabel_idgrado}"/>
                         <h:outputText value="#{horarioController.selected.idgrado}" title="#{bundle.ViewHorarioTitle_idgrado}"/>
+                        <h:outputText value="#{bundle.ViewHorarioLabel_hora}"/>
+                        <h:outputText value="#{horarioController.selected.hora}" title="#{bundle.ViewHorarioTitle_hora}"/>
+                        <h:outputText value="#{bundle.ViewHorarioLabel_dia}"/>
+                        <h:outputText value="#{horarioController.selected.dia}" title="#{bundle.ViewHorarioTitle_dia}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="HorarioViewDialog.hide()"/>
                 </h:panelGroup>

@@ -14,10 +14,6 @@
                     <p:panelGrid columns="2" rendered="#{horarioController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateHorarioLabel_idhorario}" for="idhorario" />
                         <p:inputText id="idhorario" value="#{horarioController.selected.idhorario}" title="#{bundle.CreateHorarioTitle_idhorario}" required="true" requiredMessage="#{bundle.CreateHorarioRequiredMessage_idhorario}"/>
-                        <p:outputLabel value="#{bundle.CreateHorarioLabel_hora}" for="hora" />
-                        <p:calendar id="hora" pattern="HH:mm:ss" value="#{horarioController.selected.hora}" title="#{bundle.EditHorarioTitle_hora}" required="true" requiredMessage="#{bundle.EditHorarioRequiredMessage_hora}" showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateHorarioLabel_dia}" for="dia" />
-                        <p:inputText id="dia" value="#{horarioController.selected.dia}" title="#{bundle.CreateHorarioTitle_dia}" required="true" requiredMessage="#{bundle.CreateHorarioRequiredMessage_dia}"/>
                         <p:outputLabel value="#{bundle.CreateHorarioLabel_iddocenteMateria}" for="iddocenteMateria" />
                         <p:selectOneMenu id="iddocenteMateria" value="#{horarioController.selected.iddocenteMateria}" required="true" requiredMessage="#{bundle.EditHorarioRequiredMessage_iddocenteMateria}">
                             <f:selectItems value="#{docentemateriaController.itemsAvailableSelectOne}"
@@ -29,6 +25,18 @@
                             <f:selectItems value="#{gradoController.itemsAvailableSelectOne}"
                                            var="idgradoItem"
                                            itemValue="#{idgradoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateHorarioLabel_hora}" for="hora" />
+                        <p:selectOneMenu id="hora" value="#{horarioController.selected.hora}" required="true" requiredMessage="#{bundle.EditHorarioRequiredMessage_hora}">
+                            <f:selectItems value="#{horaController.itemsAvailableSelectOne}"
+                                           var="horaItem"
+                                           itemValue="#{horaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateHorarioLabel_dia}" for="dia" />
+                        <p:selectOneMenu id="dia" value="#{horarioController.selected.dia}" required="true" requiredMessage="#{bundle.EditHorarioRequiredMessage_dia}">
+                            <f:selectItems value="#{diaSemController.itemsAvailableSelectOne}"
+                                           var="diaItem"
+                                           itemValue="#{diaItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{horarioController.create}" value="#{bundle.Save}" update="display,:HorarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'HorarioCreateDialog');"/>
