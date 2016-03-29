@@ -1,9 +1,8 @@
-package co.com.plataforma1.controladores;
+package co.com.plataforma1.modelo;
 
-import co.com.plataforma1.modelo.Horario;
-import co.com.plataforma1.controladores.util.JsfUtil;
-import co.com.plataforma1.controladores.util.JsfUtil.PersistAction;
-import co.com.plataforma1.operaciones.HorarioFacade;
+import co.com.plataforma1.modelo.util.JsfUtil;
+import co.com.plataforma1.modelo.util.JsfUtil.PersistAction;
+import co.com.plataforma1.operaciones.ResultadossimprusabFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,29 +18,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("horarioController")
+@Named("resultadossimprusabController")
 @SessionScoped
-public class HorarioController implements Serializable {
+public class ResultadossimprusabController implements Serializable {
 
     @EJB
-    private co.com.plataforma1.operaciones.HorarioFacade ejbFacade;
-    private List<Horario> items = null;
-    private Horario selected;
-    private List<Horario> listaHorario = null;
+    private co.com.plataforma1.operaciones.ResultadossimprusabFacade ejbFacade;
+    private List<Resultadossimprusab> items = null;
+    private Resultadossimprusab selected;
 
-    public HorarioController() {
+    public ResultadossimprusabController() {
     }
 
-    public Horario getSelected() {
+    public Resultadossimprusab getSelected() {
         return selected;
     }
 
-      public List<Horario> listar() {
-        listaHorario = ejbFacade.ListaHorario();
-        return listaHorario;
-    }  
-    
-    public void setSelected(Horario selected) {
+    public void setSelected(Resultadossimprusab selected) {
         this.selected = selected;
     }
 
@@ -51,36 +44,36 @@ public class HorarioController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private HorarioFacade getFacade() {
+    private ResultadossimprusabFacade getFacade() {
         return ejbFacade;
     }
 
-    public Horario prepareCreate() {
-        selected = new Horario();
+    public Resultadossimprusab prepareCreate() {
+        selected = new Resultadossimprusab();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("HorarioCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ResultadossimprusabCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("HorarioUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ResultadossimprusabUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("HorarioDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ResultadossimprusabDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Horario> getItems() {
+    public List<Resultadossimprusab> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -115,29 +108,29 @@ public class HorarioController implements Serializable {
         }
     }
 
-    public Horario getHorario(java.lang.Integer id) {
+    public Resultadossimprusab getResultadossimprusab(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Horario> getItemsAvailableSelectMany() {
+    public List<Resultadossimprusab> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Horario> getItemsAvailableSelectOne() {
+    public List<Resultadossimprusab> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Horario.class)
-    public static class HorarioControllerConverter implements Converter {
+    @FacesConverter(forClass = Resultadossimprusab.class)
+    public static class ResultadossimprusabControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            HorarioController controller = (HorarioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "horarioController");
-            return controller.getHorario(getKey(value));
+            ResultadossimprusabController controller = (ResultadossimprusabController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "resultadossimprusabController");
+            return controller.getResultadossimprusab(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -157,11 +150,11 @@ public class HorarioController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Horario) {
-                Horario o = (Horario) object;
-                return getStringKey(o.getIdhorario());
+            if (object instanceof Resultadossimprusab) {
+                Resultadossimprusab o = (Resultadossimprusab) object;
+                return getStringKey(o.getIdResSimPruSab());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Horario.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Resultadossimprusab.class.getName()});
                 return null;
             }
         }

@@ -109,7 +109,7 @@ public class DiaSem implements Serializable {
 
     @Override
     public String toString() {
-        return "idDia "+idDia;
+        return valor;
     }
     
 }

@@ -28,23 +28,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author luisa
- */
-@Entity
-@Table(name = "horario")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h"),
-    @NamedQuery(name = "Horario.findByIdhorario", query = "SELECT h FROM Horario h WHERE h.idhorario = :idhorario")})
-public class Horario implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idhorario")
+public class HorarioString implements Serializable {
     private Integer idhorario;
     @JoinColumn(name = "iddocenteMateria", referencedColumnName = "iddocenteMateria")
     @ManyToOne(optional = false)
@@ -59,14 +43,14 @@ public class Horario implements Serializable {
     @ManyToOne(optional = false)
     private DiaSem dia;
        
-    public Horario() {
+    public HorarioString() {
     }
 
-    public Horario(Integer idhorario) {
+    public HorarioString(Integer idhorario) {
         this.idhorario = idhorario;
     }
 
-    public Horario(Integer idhorario, Hora hora, DiaSem dia) {
+    public HorarioString(Integer idhorario, Hora hora, DiaSem dia) {
         this.idhorario = idhorario;
         this.hora = hora;
         this.dia = dia;
@@ -121,10 +105,10 @@ public class Horario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Horario)) {
+        if (!(object instanceof HorarioString)) {
             return false;
         }
-        Horario other = (Horario) object;
+        HorarioString other = (HorarioString) object;
         if ((this.idhorario == null && other.idhorario != null) || (this.idhorario != null && !this.idhorario.equals(other.idhorario))) {
             return false;
         }

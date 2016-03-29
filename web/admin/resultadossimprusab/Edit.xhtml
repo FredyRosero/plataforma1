@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ResultadossimprusabEditDlg" widgetVar="ResultadossimprusabEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditResultadossimprusabTitle}">
+            <h:form id="ResultadossimprusabEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{resultadossimprusabController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditResultadossimprusabLabel_idResSimPruSab}" for="idResSimPruSab" />
+                        <p:inputText id="idResSimPruSab" value="#{resultadossimprusabController.selected.idResSimPruSab}" title="#{bundle.EditResultadossimprusabTitle_idResSimPruSab}" required="true" requiredMessage="#{bundle.EditResultadossimprusabRequiredMessage_idResSimPruSab}"/>
+                        <p:outputLabel value="#{bundle.EditResultadossimprusabLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{resultadossimprusabController.selected.fecha}" title="#{bundle.EditResultadossimprusabTitle_fecha}" required="true" requiredMessage="#{bundle.EditResultadossimprusabRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditResultadossimprusabLabel_calificacion}" for="calificacion" />
+                        <p:inputText id="calificacion" value="#{resultadossimprusabController.selected.calificacion}" title="#{bundle.EditResultadossimprusabTitle_calificacion}" required="true" requiredMessage="#{bundle.EditResultadossimprusabRequiredMessage_calificacion}"/>
+                        <p:outputLabel value="#{bundle.EditResultadossimprusabLabel_idestudiante}" for="idestudiante" />
+                        <p:selectOneMenu id="idestudiante" value="#{resultadossimprusabController.selected.idestudiante}" required="true" requiredMessage="#{bundle.EditResultadossimprusabRequiredMessage_idestudiante}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"
+                                           var="idestudianteItem"
+                                           itemValue="#{idestudianteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{resultadossimprusabController.update}" value="#{bundle.Save}" update="display,:ResultadossimprusabListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ResultadossimprusabEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ResultadossimprusabEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

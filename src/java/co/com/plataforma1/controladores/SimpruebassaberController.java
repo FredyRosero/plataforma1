@@ -1,9 +1,9 @@
 package co.com.plataforma1.controladores;
 
-import co.com.plataforma1.modelo.Horario;
+import co.com.plataforma1.modelo.Simpruebassaber;
 import co.com.plataforma1.controladores.util.JsfUtil;
 import co.com.plataforma1.controladores.util.JsfUtil.PersistAction;
-import co.com.plataforma1.operaciones.HorarioFacade;
+import co.com.plataforma1.operaciones.SimpruebassaberFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,29 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@Named("horarioController")
+@Named("simpruebassaberController")
 @SessionScoped
-public class HorarioController implements Serializable {
+public class SimpruebassaberController implements Serializable {
 
     @EJB
-    private co.com.plataforma1.operaciones.HorarioFacade ejbFacade;
-    private List<Horario> items = null;
-    private Horario selected;
-    private List<Horario> listaHorario = null;
+    private co.com.plataforma1.operaciones.SimpruebassaberFacade ejbFacade;
+    private List<Simpruebassaber> items = null;
+    private Simpruebassaber selected;
 
-    public HorarioController() {
+    public SimpruebassaberController() {
     }
 
-    public Horario getSelected() {
+    public Simpruebassaber getSelected() {
         return selected;
     }
 
-      public List<Horario> listar() {
-        listaHorario = ejbFacade.ListaHorario();
-        return listaHorario;
-    }  
-    
-    public void setSelected(Horario selected) {
+    public void setSelected(Simpruebassaber selected) {
         this.selected = selected;
     }
 
@@ -51,36 +45,36 @@ public class HorarioController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private HorarioFacade getFacade() {
+    private SimpruebassaberFacade getFacade() {
         return ejbFacade;
     }
 
-    public Horario prepareCreate() {
-        selected = new Horario();
+    public Simpruebassaber prepareCreate() {
+        selected = new Simpruebassaber();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("HorarioCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SimpruebassaberCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("HorarioUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("SimpruebassaberUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("HorarioDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("SimpruebassaberDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Horario> getItems() {
+    public List<Simpruebassaber> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -115,29 +109,29 @@ public class HorarioController implements Serializable {
         }
     }
 
-    public Horario getHorario(java.lang.Integer id) {
+    public Simpruebassaber getSimpruebassaber(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Horario> getItemsAvailableSelectMany() {
+    public List<Simpruebassaber> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Horario> getItemsAvailableSelectOne() {
+    public List<Simpruebassaber> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Horario.class)
-    public static class HorarioControllerConverter implements Converter {
+    @FacesConverter(forClass = Simpruebassaber.class)
+    public static class SimpruebassaberControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            HorarioController controller = (HorarioController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "horarioController");
-            return controller.getHorario(getKey(value));
+            SimpruebassaberController controller = (SimpruebassaberController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "simpruebassaberController");
+            return controller.getSimpruebassaber(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -157,11 +151,11 @@ public class HorarioController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Horario) {
-                Horario o = (Horario) object;
-                return getStringKey(o.getIdhorario());
+            if (object instanceof Simpruebassaber) {
+                Simpruebassaber o = (Simpruebassaber) object;
+                return getStringKey(o.getIdSimPruSab());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Horario.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Simpruebassaber.class.getName()});
                 return null;
             }
         }

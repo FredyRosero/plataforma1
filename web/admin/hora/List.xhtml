@@ -16,7 +16,7 @@
         <ui:define name="body">
             <h:form id="HoraListForm">
                 <p:panel header="#{bundle.ListHoraTitle}">
-                    <p:dataTable id="datalist" value="#{horaController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{horaController.listar()}" var="item"
                                  selectionMode="single" selection="#{horaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idHoras}"
