@@ -37,7 +37,9 @@ public class HorarioController implements Serializable {
     }
 
       public List<Horario> listar() {
+        System.out.print( "listaHorario" );
         listaHorario = ejbFacade.ListaUsuario();
+        System.out.print( listaHorario );
         return listaHorario;
     }  
     

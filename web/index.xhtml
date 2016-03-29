@@ -5,14 +5,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-         <ui:define name="title">Index</ui:define>
+        <ui:define name="title">Index</ui:define>
         <h:outputStylesheet name="css/jsfcrud.css"/>
+   
     </h:head>
     <f:metadata>
         <f:event type="preRenderView" listener="#{usuarioController.validarSesion()}"/>
     </f:metadata>
    <ui:composition template="/welcomePrimefaces.xhtml">
-        <ui:define name="center" >
+        <ui:define name="center" >       
             <br/>
             <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
             <br/>

@@ -37,9 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h"),
-    @NamedQuery(name = "Horario.findByIdhorario", query = "SELECT h FROM Horario h WHERE h.idhorario = :idhorario"),
-    @NamedQuery(name = "Horario.findByHora", query = "SELECT h FROM Horario h WHERE h.hora = :hora"),
-    @NamedQuery(name = "Horario.findByDia", query = "SELECT h FROM Horario h WHERE h.dia = :dia")})
+    @NamedQuery(name = "Horario.findByIdhorario", query = "SELECT h FROM Horario h WHERE h.idhorario = :idhorario")})
 public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,24 +46,18 @@ public class Horario implements Serializable {
     @Basic(optional = false)
     @Column(name = "idhorario")
     private Integer idhorario;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "hora")
-    @Temporal(TemporalType.TIME)
-    private Date hora;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "dia")
-    private String dia;
     @JoinColumn(name = "iddocenteMateria", referencedColumnName = "iddocenteMateria")
     @ManyToOne(optional = false)
     private Docentemateria iddocenteMateria;
     @JoinColumn(name = "idgrado", referencedColumnName = "idgrado")
     @ManyToOne(optional = false)
     private Grado idgrado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idhorario")
-    private Collection<Fallas> fallasCollection;
+   @JoinColumn(name = "hora", referencedColumnName = "idHoras")
+    @ManyToOne(optional = false)
+    private Hora hora;
+    @JoinColumn(name = "dia", referencedColumnName = "idDia")
+    @ManyToOne(optional = false)
+    private DiaSem dia;
 
     public Horario() {
     }
@@ -74,7 +66,7 @@ public class Horario implements Serializable {
         this.idhorario = idhorario;
     }
 
-    public Horario(Integer idhorario, Date hora, String dia) {
+    public Horario(Integer idhorario, Hora hora, DiaSem dia) {
         this.idhorario = idhorario;
         this.hora = hora;
         this.dia = dia;
@@ -86,22 +78,6 @@ public class Horario implements Serializable {
 
     public void setIdhorario(Integer idhorario) {
         this.idhorario = idhorario;
-    }
-
-    public Date getHora() {
-        return hora;
-    }
-
-    public void setHora(Date hora) {
-        this.hora = hora;
-    }
-
-    public String getDia() {
-        return dia;
-    }
-
-    public void setDia(String dia) {
-        this.dia = dia;
     }
 
     public Docentemateria getIddocenteMateria() {
@@ -119,14 +95,20 @@ public class Horario implements Serializable {
     public void setIdgrado(Grado idgrado) {
         this.idgrado = idgrado;
     }
-
-    @XmlTransient
-    public Collection<Fallas> getFallasCollection() {
-        return fallasCollection;
+    public Hora getHora() {
+        return hora;
     }
 
-    public void setFallasCollection(Collection<Fallas> fallasCollection) {
-        this.fallasCollection = fallasCollection;
+    public void setHora(Hora hora) {
+        this.hora = hora;
+    }
+
+    public DiaSem getDia() {
+        return dia;
+    }
+
+    public void setDia(DiaSem dia) {
+        this.dia = dia;
     }
 
     @Override

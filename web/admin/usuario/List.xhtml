@@ -9,15 +9,14 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{usuarioController.validarSesion()}"/>
     </f:metadata>
-
     <ui:composition template="/welcomePrimefaces.xhtml">
 
-
+        
         <ui:define name="title">
             <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="center">
+        <ui:define name="center">     
             <h:form id="UsuarioListForm">
                 <p:panel header="#{bundle.ListUsuarioTitle}">
                     <p:dataTable id="datalist" value="#{usuarioController.listar()}" var="item"

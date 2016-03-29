@@ -23,10 +23,9 @@
                 <h:form id="menuForm">
                     <p:commandLink  actionListener="#{usuarioController.cerrarSesion()}" action="/faces/login.xhtml?faces-redirect=true" value="cerrar Sesion"/>
                     <p:menubar>
-                          <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                          <p:menuitem value="#{usuarioController.u.usuario}" />
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:menuitem value="#{usuarioController.u.usuario}" />
                         <p:submenu label="#{bundle.Maintenance}">
-                      
                             <p:menuitem value="Acudiente" outcome="/admin/acudiente/List.xhtml" />
                             <p:menuitem value="Auditoria" outcome="/admin/auditoria/List.xhtml" />
                             <p:menuitem value="Calificaciones" outcome="/admin/calificaciones/List.xhtml" />
