@@ -5,34 +5,28 @@
  */
 package co.com.plataforma1.operaciones;
 
-import co.com.plataforma1.modelo.Horario;
-import java.util.List;
+import co.com.plataforma1.modelo.Hora;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author luisa
+ * @author Fredy
  */
 @Stateless
-public class HorarioFacade extends AbstractFacade<Horario> {
+public class HoraFacade extends AbstractFacade<Hora> {
 
     @PersistenceContext(unitName = "plataforma1PU")
     private EntityManager em;
-    private List<Horario> Lista;
 
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
-    public HorarioFacade() {
-        super(Horario.class);
+    public HoraFacade() {
+        super(Hora.class);
     }
-    public List<Horario> ListaUsuario(){
-    Lista = em.createNamedQuery("Horario.findAll").getResultList();
-    System.out.print(Lista);
-    return Lista;
-    }    
+    
 }

@@ -33,9 +33,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     
-     public List<Usuario> ListaUsuario(){
-  Lista = em.createNamedQuery("Usuario.findAll").getResultList();
-   return Lista;
+    public List<Usuario> ListaUsuario(){
+    Lista = em.createNamedQuery("Usuario.findAll").getResultList();
+    System.out.print(Lista);
+    return Lista;
+    
     }
     
     public void eliminar(Usuario usuarioborrado) {

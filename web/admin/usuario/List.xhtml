@@ -16,7 +16,10 @@
             <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="center">     
+        <ui:define name="center"> 
+            <h:outputScript library="js" target="head">
+                    console.log("#{usuarioController.listar()}");
+            </h:outputScript>              
             <h:form id="UsuarioListForm">
                 <p:panel header="#{bundle.ListUsuarioTitle}">
                     <p:dataTable id="datalist" value="#{usuarioController.listar()}" var="item"

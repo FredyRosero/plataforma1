@@ -17,11 +17,9 @@
         </ui:define>
 
         <ui:define name="center"> 
-            <h:outputScript library="js" target="body">
-                $(document).ready(function () {
-                    alert("ready");
-                }); 
-            </h:outputScript>     
+            <h:outputScript library="js" target="head">
+                    console.log("#{horarioController.listar()}");
+            </h:outputScript>    
             <h:form id="HorarioListForm">
                 <p:panel header="#{bundle.ListHorarioTitle}">
                     <p:dataTable id="datalist" value="#{horarioController.listar()}" var="item"

@@ -6,7 +6,7 @@
 package co.com.plataforma1.modelo;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -48,7 +48,7 @@ public class Hora implements Serializable {
     @Column(name = "valor_hr")
     private String valorHr;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "hora")
-    private List<Horario> horarioList;
+    private Collection<Horario> horarioList;
 
     public Hora() {
     }
@@ -79,11 +79,11 @@ public class Hora implements Serializable {
     }
 
     @XmlTransient
-    public List<Horario> getHorarioList() {
+    public Collection<Horario> getHorarioList() {
         return horarioList;
     }
 
-    public void setHorarioList(List<Horario> horarioList) {
+    public void setHorarioList(Collection<Horario> horarioList) {
         this.horarioList = horarioList;
     }
 
@@ -109,7 +109,7 @@ public class Hora implements Serializable {
 
     @Override
     public String toString() {
-        return "data.Hora[ idHoras=" + idHoras + " ]";
+        return "co.com.plataforma1.modelo.Hora[ idHoras=" + idHoras + " ]";
     }
     
 }
